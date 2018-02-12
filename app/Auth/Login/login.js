@@ -10,7 +10,7 @@ class loginForm extends Component {
                 <View style={styles.logoContainer}>
                     <Image 
                     style={styles.logo}
-                    source={require('../../image/ninja-chicken.png')}
+                    source={{uri:'http://geekycentral.com/wp-content/uploads/2017/09/react-native.png'}}
                     />
                     <Text style={styles.title}>This is myApp</Text>
                 </View>

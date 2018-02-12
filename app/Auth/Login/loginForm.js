@@ -2,7 +2,40 @@ import React, { Component } from 'react';
 import { View, Button, StyleSheet, TextInput, TouchableOpacity, Text , KeyboardAvoidingView} from 'react-native';
 
 class loginForm extends Component {
-    state = { email: '', password: '' };
+    
+    constructor(props){
+        super(props)
+
+        this.state = ({
+            email: '',
+            password: '',
+        })
+        
+    }
+    
+    loginUser = (email,password) =>{
+        try{
+            firebase.auth().signInWithEmailAndPassword(email,password).then(function(user){
+                console.log(user)
+            })
+            
+        }catch(error){
+            console.log(error.toString())
+        }
+    }
+
+    registerUser =() =>{
+        const {email, password} = this.state;
+        console.log(email, password)
+        console.log(window.firebase)
+        window.firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorCode, errorMessage)
+          });
+            // }
+    } 
 
     render() {
         return (
@@ -10,13 +43,19 @@ class loginForm extends Component {
                 <TextInput
                     placeholder="Username Or Email"
                     placeholderTextColor='rgba(0,0,0,0.2)'
-                    style={styles.input}/>
+                    style={styles.input}
+                    onChangeText={(email)=> this.setState({email})}/>
                 <TextInput
+                    secureTextEntry={true}
                     placeholder="Password"
                     placeholderTextColor='rgba(0,0,0,0.2)'
-                    style={styles.input}/>    
-                <TouchableOpacity style={styles.buttonContainer}>
+                    style={styles.input}
+                    onChangeText={(password)=> this.setState({password})}/>    
+                <TouchableOpacity style={styles.buttonContainer} onPress={()=>this.loginUser(this.state.email,this.state.password)}>
                     <Text style={styles.buttonText}>Login</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonContainer} onPress={this.registerUser}>
+                    <Text style={styles.buttonText}>Register</Text>
                 </TouchableOpacity>
             </View>
             
