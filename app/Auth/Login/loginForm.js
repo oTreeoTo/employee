@@ -9,7 +9,6 @@ class loginForm extends Component {
             email: '',
             password: '',
         })
-
     }
 
     loginUser = (email, password) => {
@@ -25,7 +24,7 @@ class loginForm extends Component {
         const { email, password } = this.state;
         console.log(email, password)
         console.log(window.firebase)
-        window.firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;

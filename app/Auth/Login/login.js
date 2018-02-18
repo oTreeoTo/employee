@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import LoginForm from './loginForm';
 
-class loginForm extends Component {
+class login extends Component {
 
     render() {
         return (
@@ -23,7 +23,7 @@ class loginForm extends Component {
     }
 }
 
-export default loginForm;
+export default login;
 
 const styles = StyleSheet.create({
     container: {
@@ -53,6 +53,4 @@ const styles = StyleSheet.create({
     signUpText: {
         color: 'rgba(255,255,255,0.2)',
     },
-
-
 });
